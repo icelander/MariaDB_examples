@@ -1,4 +1,4 @@
-FROM centos:7
+FROM rockylinux:8.6
 
 MAINTAINER Alex Infanzon (ai@mariadb.com)
 
@@ -8,6 +8,12 @@ RUN yum -y update ; yum clean all
 RUN curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | bash
 RUN yum -y install maxscale MariaDB-client net-tools
 RUN yum clean all
+
+# Expose MariaDB Port
+EXPOSE 3306
+
+# Expose MariaDB Read-Only Port
+EXPOSE 3307
 
 RUN (cd /lib/systemd/system/sysinit.target.wants/; for i in ; do [ $i == systemd-tmpfiles-setup.service ] || rm -f $i; done); 
 RUN rm -f /lib/systemd/system/multi-user.target.wants/*;

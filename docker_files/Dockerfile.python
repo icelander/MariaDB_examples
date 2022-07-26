@@ -16,7 +16,7 @@
 #
 #**********************************************************************
 
-FROM centos:7
+FROM rockylinux:8.6
 
 MAINTAINER Alex Infanzon (ai@mariadb.com)
 
@@ -24,8 +24,8 @@ ENV container docker
 
 RUN yum -y update ; yum clean all
 RUN yum install -y epel-release && \
-    yum install -y git gcc make zlib-devel bzip2 bzip2-devel readline-devel sqllite sqlite-devel openssl-devel xz xz-devel libffi-devel && \
-    yum install -y python-pip && \
+    yum install -y git gcc make zlib-devel bzip2 bzip2-devel readline-devel sqlite sqlite-devel openssl-devel xz xz-devel libffi-devel findutils && \
+    yum install -y python3 && \
     yum install -y mysql && \
     yum clean all
 

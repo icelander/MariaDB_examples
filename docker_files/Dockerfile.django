@@ -1,4 +1,4 @@
-FROM centos:7
+FROM rockylinux:8.6
 
 MAINTAINER Alex Infanzon (ai@mariadb.com)
 
@@ -26,7 +26,7 @@ RUN yum -y install python-pip \
 RUN curl https://pyenv.run | bash
 COPY ./bashrc /root/.bashrc
 RUN exec "$SHELL"
-    
+
 #RUN pyenv install -v 3.7.2
 #RUN pyenv global 3.7.2
 #RUN pip install --upgrade pip

@@ -1,5 +1,5 @@
 # vim:set ft=dockerfile:
-FROM centos:7
+FROM rockylinux:8.6
 
 # Set Default ENV Variables
 ENV TINI_VERSION=v0.18.0
@@ -19,8 +19,8 @@ RUN yum -y install bind-utils \
     file \
     jemalloc \
     libaio \
-    libcurl \
-    libnl \
+    # libcurl \
+    libnl3 \
     libxml2 \
     lsof \
     monit \
@@ -38,14 +38,15 @@ RUN yum -y install bind-utils \
     rsyslog \
     snappy \
     sudo \
-    sysvinit-tools \
+    # sysvinit-tools \
     wget \
     which \
     zlib && \
     yum clean all && \
     rm -rf /var/cache/yum && \
-    rm -rf /etc/rsyslog.d/listen.conf && \
-    localedef -i en_US -f UTF-8 en_US.UTF-8
+    rm -rf /etc/rsyslog.d/listen.conf 
+    #  && \
+    # localedef -i en_US -f UTF-8 en_US.UTF-8
 
 # Add Tini Init Process
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /usr/bin/tini
